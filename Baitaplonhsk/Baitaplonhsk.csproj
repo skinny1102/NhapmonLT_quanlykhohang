@@ -67,6 +67,8 @@
       <DependentUpon>donnhaphang.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DTO\DataProvider.cs" />
+    <Compile Include="DTO\DataProviderBase.cs" />
     <Compile Include="FormCapTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +239,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

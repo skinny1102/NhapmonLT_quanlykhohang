@@ -30,14 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnsuachitiet = new System.Windows.Forms.Button();
-            this.fGianhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fSoluongnhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbbmarem = new System.Windows.Forms.ComboBox();
             this.btnthemlv = new System.Windows.Forms.Button();
             this.txtdongia = new System.Windows.Forms.TextBox();
             this.txtsoluong = new System.Windows.Forms.TextBox();
             this.colDiachigiaohang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sMaloairem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNgaygiaohang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTenNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +68,9 @@
             this.dtpNgaydathang = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.sMaloairem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fGianhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fSoluongnhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvctdat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDondathang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDondathang)).BeginInit();
@@ -86,22 +86,6 @@
             this.btnsuachitiet.Text = "Sửa chi tiết";
             this.btnsuachitiet.UseVisualStyleBackColor = true;
             this.btnsuachitiet.Click += new System.EventHandler(this.btnsuachitiet_Click);
-            // 
-            // fGianhap
-            // 
-            this.fGianhap.DataPropertyName = "fGiaban";
-            this.fGianhap.HeaderText = "Giá bán";
-            this.fGianhap.MinimumWidth = 6;
-            this.fGianhap.Name = "fGianhap";
-            this.fGianhap.Width = 125;
-            // 
-            // fSoluongnhap
-            // 
-            this.fSoluongnhap.DataPropertyName = "fSoluongmua";
-            this.fSoluongnhap.HeaderText = "Số lượng";
-            this.fSoluongnhap.MinimumWidth = 6;
-            this.fSoluongnhap.Name = "fSoluongnhap";
-            this.fSoluongnhap.Width = 125;
             // 
             // cbbmarem
             // 
@@ -146,14 +130,6 @@
             this.colDiachigiaohang.MinimumWidth = 6;
             this.colDiachigiaohang.Name = "colDiachigiaohang";
             this.colDiachigiaohang.Width = 125;
-            // 
-            // sMaloairem
-            // 
-            this.sMaloairem.DataPropertyName = "sMaloairem";
-            this.sMaloairem.HeaderText = "Mã loại rèm";
-            this.sMaloairem.MinimumWidth = 6;
-            this.sMaloairem.Name = "sMaloairem";
-            this.sMaloairem.Width = 125;
             // 
             // colNgaygiaohang
             // 
@@ -483,6 +459,30 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // sMaloairem
+            // 
+            this.sMaloairem.DataPropertyName = "sMaloairem";
+            this.sMaloairem.HeaderText = "Mã sản phẩm";
+            this.sMaloairem.MinimumWidth = 6;
+            this.sMaloairem.Name = "sMaloairem";
+            this.sMaloairem.Width = 125;
+            // 
+            // fGianhap
+            // 
+            this.fGianhap.DataPropertyName = "fGiaban";
+            this.fGianhap.HeaderText = "Giá bán";
+            this.fGianhap.MinimumWidth = 6;
+            this.fGianhap.Name = "fGianhap";
+            this.fGianhap.Width = 125;
+            // 
+            // fSoluongnhap
+            // 
+            this.fSoluongnhap.DataPropertyName = "fSoluongmua";
+            this.fSoluongnhap.HeaderText = "Số lượng";
+            this.fSoluongnhap.MinimumWidth = 6;
+            this.fSoluongnhap.Name = "fSoluongnhap";
+            this.fSoluongnhap.Width = 125;
+            // 
             // frmDondathang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -537,14 +537,11 @@
         #endregion
 
         private System.Windows.Forms.Button btnsuachitiet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fGianhap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fSoluongnhap;
         private System.Windows.Forms.ComboBox cbbmarem;
         private System.Windows.Forms.Button btnthemlv;
         private System.Windows.Forms.TextBox txtdongia;
         private System.Windows.Forms.TextBox txtsoluong;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDiachigiaohang;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sMaloairem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNgaygiaohang;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenKH;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenNV;
@@ -578,5 +575,8 @@
         private System.Windows.Forms.DateTimePicker dtpNgaydathang;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sMaloairem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fGianhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fSoluongnhap;
     }
 }
