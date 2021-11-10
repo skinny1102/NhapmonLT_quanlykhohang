@@ -32,7 +32,6 @@ namespace Baitaplonhsk
             this.password = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.showPassword = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.loginBtn = new System.Windows.Forms.Button();
             this.username = new System.Windows.Forms.TextBox();
@@ -74,17 +73,6 @@ namespace Baitaplonhsk
             this.button2.TabIndex = 21;
             this.button2.Text = "Thoát";
             this.button2.UseVisualStyleBackColor = false;
-            // 
-            // showPassword
-            // 
-            this.showPassword.AutoSize = true;
-            this.showPassword.Location = new System.Drawing.Point(384, 227);
-            this.showPassword.Margin = new System.Windows.Forms.Padding(4);
-            this.showPassword.Name = "showPassword";
-            this.showPassword.Size = new System.Drawing.Size(121, 21);
-            this.showPassword.TabIndex = 19;
-            this.showPassword.Text = "Hiện mật khẩu";
-            this.showPassword.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -139,7 +127,6 @@ namespace Baitaplonhsk
             this.Controls.Add(this.password);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.showPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.username);
@@ -156,7 +143,6 @@ namespace Baitaplonhsk
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox showPassword;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.TextBox username;
