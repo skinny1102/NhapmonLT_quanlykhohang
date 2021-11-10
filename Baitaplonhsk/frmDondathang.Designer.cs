@@ -119,7 +119,7 @@
             this.btnthemlv.Name = "btnthemlv";
             this.btnthemlv.Size = new System.Drawing.Size(97, 43);
             this.btnthemlv.TabIndex = 181;
-            this.btnthemlv.Text = "Thêm loại rèm";
+            this.btnthemlv.Text = "Thêm sản phẩm";
             this.btnthemlv.UseVisualStyleBackColor = true;
             this.btnthemlv.Click += new System.EventHandler(this.btnthemlv_Click);
             // 
