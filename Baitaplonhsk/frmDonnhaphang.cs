@@ -488,13 +488,20 @@ namespace Baitaplonhsk
             btnBoqua.Visible = false;
             hien();
         }
-
+        private void goHome(String username)
+        {
+            FormTrangChu form = new FormTrangChu(username);
+            form.Show();
+            this.Hide();
+        }
 
         private void btnDong_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
-                Close();
+            {
+                goHome(username);
+            }    
         }
 
         private void frmDonnhaphang_Load(object sender, EventArgs e)
