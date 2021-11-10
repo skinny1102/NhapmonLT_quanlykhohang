@@ -86,7 +86,7 @@ namespace Baitaplonhsk
         }
         public SqlConnection openSQL()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["quanlyxuatnhapkho2"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             return con;
