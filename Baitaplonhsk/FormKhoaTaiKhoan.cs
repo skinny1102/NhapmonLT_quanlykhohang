@@ -17,8 +17,10 @@ namespace Baitaplonhsk
         public String username;
         public FormKhoaTaiKhoan()
         {
+            
             InitializeComponent();
-            comboxTaiKhoan();
+          
+
         }
         public FormKhoaTaiKhoan(String user)
         {
@@ -96,6 +98,11 @@ namespace Baitaplonhsk
         private void button2_Click(object sender, EventArgs e)
         {
             goHome(username);
+        }
+
+        private void FormKhoaTaiKhoan_Load(object sender, EventArgs e)
+        {
+            comboxTaiKhoan();
         }
     }
 }

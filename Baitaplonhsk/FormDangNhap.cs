@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Baitaplonhsk.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -26,9 +27,47 @@ namespace Baitaplonhsk
             return con;
         }
 
+
+        public  void Login()
+        {
+            string query = "select flag from employee where username = '" + username.Text + "'and password = '" + password.Text + "';";
+            DataProvider provider = new DataProvider();
+            DataTable data = provider.ExecuteQuery(query);
+            if (data != null)
+            {
+                Boolean flag = (bool)data.Rows[0]["flag"];
+                if (flag == false)
+                {
+                    const string message = "Tài khoản bị khóa!";
+                    const string caption = "Đăng nhập";
+                    MessageBox.Show(message, caption, MessageBoxButtons.OK);
+                }
+                else
+                {
+                    FormTrangChu form = new FormTrangChu(username.Text);
+                    form.Show();
+                    this.Hide();
+                }
+
+            }
+            else
+            {
+                const string message = "Tài khoản hoặc mật khẩu sai!";
+                const string caption = "Đăng nhập";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK);
+                username.Focus();
+            }
+        }
+
         private void loginBtn_Click(object sender, EventArgs e)
         {
 
+            //SqlConnection connect = openSQL();
+            //string query = "select flag from employee where username = '" + username.Text + "'and password = '" + password.Text + "';";
+            //SqlCommand cmd = new SqlCommand(query, connect);
+            //DataTable data = new DataTable();
+            //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            //adapter.Fill(data);
             SqlConnection connect = openSQL();
             string query = "select flag from employee where username = '" + username.Text + "'and password = '" + password.Text + "';";
 
@@ -63,5 +102,7 @@ namespace Baitaplonhsk
             }
             connect.Close();
         }
+
     }
-}
+    }
+

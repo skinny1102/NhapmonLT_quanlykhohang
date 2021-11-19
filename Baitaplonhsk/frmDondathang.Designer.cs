@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnsuachitiet = new System.Windows.Forms.Button();
             this.cbbmarem = new System.Windows.Forms.ComboBox();
             this.btnthemlv = new System.Windows.Forms.Button();
             this.txtdongia = new System.Windows.Forms.TextBox();
@@ -46,6 +45,9 @@
             this.colNgaydathang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnxoachitiet = new System.Windows.Forms.Button();
             this.dgvctdat = new System.Windows.Forms.DataGridView();
+            this.sMaloairem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fGianhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fSoluongnhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btninhoadon = new System.Windows.Forms.Button();
             this.cbbKhachhang = new System.Windows.Forms.ComboBox();
             this.cbbNhanvien = new System.Windows.Forms.ComboBox();
@@ -68,24 +70,12 @@
             this.dtpNgaydathang = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.sMaloairem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fGianhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fSoluongnhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSuachitiet = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvctdat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDondathang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDondathang)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnsuachitiet
-            // 
-            this.btnsuachitiet.Location = new System.Drawing.Point(954, 596);
-            this.btnsuachitiet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnsuachitiet.Name = "btnsuachitiet";
-            this.btnsuachitiet.Size = new System.Drawing.Size(183, 43);
-            this.btnsuachitiet.TabIndex = 187;
-            this.btnsuachitiet.Text = "Sửa chi tiết";
-            this.btnsuachitiet.UseVisualStyleBackColor = true;
-            this.btnsuachitiet.Click += new System.EventHandler(this.btnsuachitiet_Click);
             // 
             // cbbmarem
             // 
@@ -101,7 +91,7 @@
             this.btnthemlv.Location = new System.Drawing.Point(1277, 205);
             this.btnthemlv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnthemlv.Name = "btnthemlv";
-            this.btnthemlv.Size = new System.Drawing.Size(97, 43);
+            this.btnthemlv.Size = new System.Drawing.Size(86, 43);
             this.btnthemlv.TabIndex = 181;
             this.btnthemlv.Text = "Thêm sản phẩm";
             this.btnthemlv.UseVisualStyleBackColor = true;
@@ -235,6 +225,30 @@
             this.dgvctdat.Size = new System.Drawing.Size(460, 290);
             this.dgvctdat.TabIndex = 178;
             this.dgvctdat.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvctdat_CellClick);
+            // 
+            // sMaloairem
+            // 
+            this.sMaloairem.DataPropertyName = "sMaloairem";
+            this.sMaloairem.HeaderText = "Mã sản phẩm";
+            this.sMaloairem.MinimumWidth = 6;
+            this.sMaloairem.Name = "sMaloairem";
+            this.sMaloairem.Width = 125;
+            // 
+            // fGianhap
+            // 
+            this.fGianhap.DataPropertyName = "fGiaban";
+            this.fGianhap.HeaderText = "Giá bán";
+            this.fGianhap.MinimumWidth = 6;
+            this.fGianhap.Name = "fGianhap";
+            this.fGianhap.Width = 125;
+            // 
+            // fSoluongnhap
+            // 
+            this.fSoluongnhap.DataPropertyName = "fSoluongmua";
+            this.fSoluongnhap.HeaderText = "Số lượng";
+            this.fSoluongnhap.MinimumWidth = 6;
+            this.fSoluongnhap.Name = "fSoluongnhap";
+            this.fSoluongnhap.Width = 125;
             // 
             // btninhoadon
             // 
@@ -459,29 +473,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // sMaloairem
+            // btnSuachitiet
             // 
-            this.sMaloairem.DataPropertyName = "sMaloairem";
-            this.sMaloairem.HeaderText = "Mã sản phẩm";
-            this.sMaloairem.MinimumWidth = 6;
-            this.sMaloairem.Name = "sMaloairem";
-            this.sMaloairem.Width = 125;
+            this.btnSuachitiet.Location = new System.Drawing.Point(973, 601);
+            this.btnSuachitiet.Name = "btnSuachitiet";
+            this.btnSuachitiet.Size = new System.Drawing.Size(111, 38);
+            this.btnSuachitiet.TabIndex = 190;
+            this.btnSuachitiet.Text = "sửa chi tiết";
+            this.btnSuachitiet.UseVisualStyleBackColor = true;
+            this.btnSuachitiet.Click += new System.EventHandler(this.button2_Click);
             // 
-            // fGianhap
+            // button2
             // 
-            this.fGianhap.DataPropertyName = "fGiaban";
-            this.fGianhap.HeaderText = "Giá bán";
-            this.fGianhap.MinimumWidth = 6;
-            this.fGianhap.Name = "fGianhap";
-            this.fGianhap.Width = 125;
-            // 
-            // fSoluongnhap
-            // 
-            this.fSoluongnhap.DataPropertyName = "fSoluongmua";
-            this.fSoluongnhap.HeaderText = "Số lượng";
-            this.fSoluongnhap.MinimumWidth = 6;
-            this.fSoluongnhap.Name = "fSoluongnhap";
-            this.fSoluongnhap.Width = 125;
+            this.button2.Location = new System.Drawing.Point(1277, 158);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(86, 29);
+            this.button2.TabIndex = 228;
+            this.button2.Text = "Sửa";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // frmDondathang
             // 
@@ -489,8 +499,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
             this.ClientSize = new System.Drawing.Size(1432, 753);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnSuachitiet);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnsuachitiet);
             this.Controls.Add(this.cbbmarem);
             this.Controls.Add(this.btnthemlv);
             this.Controls.Add(this.txtdongia);
@@ -535,8 +546,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnsuachitiet;
         private System.Windows.Forms.ComboBox cbbmarem;
         private System.Windows.Forms.Button btnthemlv;
         private System.Windows.Forms.TextBox txtdongia;
@@ -578,5 +587,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sMaloairem;
         private System.Windows.Forms.DataGridViewTextBoxColumn fGianhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn fSoluongnhap;
+        private System.Windows.Forms.Button btnSuachitiet;
+        private System.Windows.Forms.Button button2;
     }
 }

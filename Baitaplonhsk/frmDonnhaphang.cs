@@ -473,7 +473,7 @@ namespace Baitaplonhsk
             dtpNgaynhaphang.CustomFormat = "'Ngày: 'dd', Tháng: 'MM', Năm: 'yyyy";
             txtSoHD.ReadOnly = true;
             cbbNhanvien.Enabled = false;
-            cbbmarem.Enabled = false;
+            cbbmarem.Enabled = true;
             txtSoluong.ReadOnly = true;
             btnTimkiem.Enabled = true;
             txtGianhap.ReadOnly = true;
@@ -614,25 +614,25 @@ namespace Baitaplonhsk
 
         private void btnsuachitiet_Click(object sender, EventArgs e)
         {
-            using (SqlCommand cmd = new SqlCommand("sp_Suachitietdonnhaphang", cnn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@sohd", txtSoHD.Text);
-                cmd.Parameters.AddWithValue("@loairem", cbbmarem.Text);
-                cmd.Parameters.AddWithValue("@soluong", float.Parse(txtSoluong.Text));
-                cmd.Parameters.AddWithValue("@gianhap", float.Parse(txtGianhap.Text));
-                try
-                {
-                    cnn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-                catch
-                {
-                    MessageBox.Show("Đã có lỗi xảy ra!");
-                }
-                finally { cnn.Close(); }
-            }
-            xemchitiethoadon(txtSoHD.Text);
+            //using (SqlCommand cmd = new SqlCommand("sp_Suachitietdonnhaphang", cnn))
+            //{
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    cmd.Parameters.AddWithValue("@sohd", txtSoHD.Text);
+            //    cmd.Parameters.AddWithValue("@loairem", cbbmarem.Text);
+            //    cmd.Parameters.AddWithValue("@soluong", float.Parse(txtSoluong.Text));
+            //    cmd.Parameters.AddWithValue("@gianhap", float.Parse(txtGianhap.Text));
+            //    try
+            //    {
+            //        cnn.Open();
+            //        cmd.ExecuteNonQuery();
+            //    }
+            //    catch
+            //    {
+            //        MessageBox.Show("Đã có lỗi xảy ra!");
+            //    }
+            //    finally { cnn.Close(); }
+            //}
+            //xemchitiethoadon(txtSoHD.Text);
         }
 
 
@@ -707,6 +707,29 @@ namespace Baitaplonhsk
         private void cbbNhanvien_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Suachitietdonnhaphang", cnn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@sohd", txtSoHD.Text);
+                cmd.Parameters.AddWithValue("@loairem", cbbmarem.Text);
+                cmd.Parameters.AddWithValue("@soluong", float.Parse(txtSoluong.Text));
+                cmd.Parameters.AddWithValue("@gianhap", float.Parse(txtGianhap.Text));
+                try
+                {
+                    cnn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra!");
+                }
+                finally { cnn.Close(); }
+            }
+            xemchitiethoadon(txtSoHD.Text);
         }
     }
 }

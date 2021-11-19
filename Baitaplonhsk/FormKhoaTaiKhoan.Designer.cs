@@ -100,6 +100,7 @@ namespace Baitaplonhsk
             this.Controls.Add(this.label8);
             this.Name = "FormKhoaTaiKhoan";
             this.Text = "FormKhoaTaiKhoan";
+            this.Load += new System.EventHandler(this.FormKhoaTaiKhoan_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

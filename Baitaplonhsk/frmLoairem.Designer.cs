@@ -251,7 +251,7 @@
             // colTenloairem
             // 
             this.colTenloairem.DataPropertyName = "sTenloairem";
-            this.colTenloairem.HeaderText = "Tên loại rèm";
+            this.colTenloairem.HeaderText = "Tên sản phẩm";
             this.colTenloairem.MinimumWidth = 6;
             this.colTenloairem.Name = "colTenloairem";
             this.colTenloairem.Width = 150;

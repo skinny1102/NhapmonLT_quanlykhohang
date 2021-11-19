@@ -41,6 +41,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnxoachitiet = new System.Windows.Forms.Button();
             this.dgvctnhap = new System.Windows.Forms.DataGridView();
+            this.sMaloairem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fGianhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fSoluongnhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbbNhanvien = new System.Windows.Forms.ComboBox();
             this.dtpNgaynhaphang = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
@@ -59,9 +62,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.errorDonnhaphang = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnBoqua = new System.Windows.Forms.Button();
-            this.sMaloairem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fGianhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fSoluongnhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvctnhap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDonnhaphang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDonnhaphang)).BeginInit();
@@ -190,6 +191,30 @@
             this.dgvctnhap.Size = new System.Drawing.Size(460, 278);
             this.dgvctnhap.TabIndex = 215;
             this.dgvctnhap.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvctnhap_CellClick);
+            // 
+            // sMaloairem
+            // 
+            this.sMaloairem.DataPropertyName = "sMaloairem";
+            this.sMaloairem.HeaderText = "Mã sản phảm";
+            this.sMaloairem.MinimumWidth = 6;
+            this.sMaloairem.Name = "sMaloairem";
+            this.sMaloairem.Width = 125;
+            // 
+            // fGianhap
+            // 
+            this.fGianhap.DataPropertyName = "fGianhap";
+            this.fGianhap.HeaderText = "Giá nhập";
+            this.fGianhap.MinimumWidth = 6;
+            this.fGianhap.Name = "fGianhap";
+            this.fGianhap.Width = 125;
+            // 
+            // fSoluongnhap
+            // 
+            this.fSoluongnhap.DataPropertyName = "fSoluongnhap";
+            this.fSoluongnhap.HeaderText = "Số lượng nhập";
+            this.fSoluongnhap.MinimumWidth = 6;
+            this.fSoluongnhap.Name = "fSoluongnhap";
+            this.fSoluongnhap.Width = 125;
             // 
             // cbbNhanvien
             // 
@@ -363,35 +388,22 @@
             this.btnBoqua.UseVisualStyleBackColor = true;
             this.btnBoqua.Click += new System.EventHandler(this.btnBoqua_Click);
             // 
-            // sMaloairem
+            // button1
             // 
-            this.sMaloairem.DataPropertyName = "sMaloairem";
-            this.sMaloairem.HeaderText = "Mã sản phảm";
-            this.sMaloairem.MinimumWidth = 6;
-            this.sMaloairem.Name = "sMaloairem";
-            this.sMaloairem.Width = 125;
-            // 
-            // fGianhap
-            // 
-            this.fGianhap.DataPropertyName = "fGianhap";
-            this.fGianhap.HeaderText = "Giá nhập";
-            this.fGianhap.MinimumWidth = 6;
-            this.fGianhap.Name = "fGianhap";
-            this.fGianhap.Width = 125;
-            // 
-            // fSoluongnhap
-            // 
-            this.fSoluongnhap.DataPropertyName = "fSoluongnhap";
-            this.fSoluongnhap.HeaderText = "Số lượng nhập";
-            this.fSoluongnhap.MinimumWidth = 6;
-            this.fSoluongnhap.Name = "fSoluongnhap";
-            this.fSoluongnhap.Width = 125;
+            this.button1.Location = new System.Drawing.Point(1129, 143);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 29);
+            this.button1.TabIndex = 227;
+            this.button1.Text = "Sửa";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmDonnhaphang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1289, 750);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btninhoadon);
             this.Controls.Add(this.btnsuachitiet);
             this.Controls.Add(this.cbbmarem);
@@ -463,5 +475,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sMaloairem;
         private System.Windows.Forms.DataGridViewTextBoxColumn fGianhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn fSoluongnhap;
+        private System.Windows.Forms.Button button1;
     }
 }

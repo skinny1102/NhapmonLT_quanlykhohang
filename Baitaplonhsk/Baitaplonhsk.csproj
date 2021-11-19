@@ -68,7 +68,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DTO\DataProvider.cs" />
-    <Compile Include="DTO\DataProviderBase.cs" />
+    <Compile Include="DTO\DataProviderCmd.cs" />
     <Compile Include="FormCapTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,9 +77,11 @@
     </Compile>
     <Compile Include="FormDangNhap.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="FormDangNhap.Designer.cs">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="FormDoiMatKhau.cs">
       <SubType>Form</SubType>
@@ -168,6 +170,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDoiMatKhau.resx">
       <DependentUpon>FormDoiMatKhau.cs</DependentUpon>

@@ -22,5 +22,6 @@ namespace Baitaplonhsk.DTO
             }    
             return data;
         }
+
     }
 }

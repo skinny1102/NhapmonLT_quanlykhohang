@@ -308,8 +308,17 @@ namespace Baitaplonhsk
                 bool trungkhoa = kiemtratrungkhoa("tblNhanvien", txtMaNV.Text, "sMaNV");
                 if (trungkhoa)
                 {
-                    int i = cmd.ExecuteNonQuery();
-                    MessageBox.Show("Xóa thành công");
+                    try
+                    {
+                        int i = cmd.ExecuteNonQuery();
+                        MessageBox.Show("Xóa thành công");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Nhân viên này đang trong 1 hóa đơn");
+                    }
+                
+            
                 }
                 else MessageBox.Show("Mã nhân viên này không tồn tại!");
                 cnn.Close();

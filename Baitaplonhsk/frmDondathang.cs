@@ -21,6 +21,7 @@ namespace Baitaplonhsk
         public frmDondathang()
         {
             InitializeComponent();
+           
         }
         public frmDondathang(String user)
         {
@@ -92,6 +93,7 @@ namespace Baitaplonhsk
         private void frmDondathang_Load(object sender, EventArgs e)
         {
             btnBoqua_Click(sender, e);
+            button2.Enabled = false;
 
         }
 
@@ -177,11 +179,11 @@ namespace Baitaplonhsk
                 txtDiachigiao.ReadOnly = false;
                 dtpNgaydathang.Enabled = true;
                 dtpNgaygiaohang.Enabled = true;
-                cbbmarem.Enabled = true;
-                txtsoluong.ReadOnly = false;
-                txtdongia.ReadOnly = false;
+                cbbmarem.Enabled = false;
+                txtsoluong.Enabled = false;
+                txtdongia.Enabled = false;
                 btninhoadon.Enabled = false;
-                btnthemlv.Visible = true;
+                btnthemlv.Visible = false;
                 btnThem.Text = "Lưu";
                 btnBoqua.Visible = true;
                 try
@@ -250,8 +252,39 @@ namespace Baitaplonhsk
                     int i = cmd.ExecuteNonQuery();
                     kt = true;
                 }
-                catch { MessageBox.Show("Đã có lỗi xảy ra!");kt = false; }
-                finally { cnn.Close();}
+                catch { 
+                 
+                    DialogResult result = MessageBox.Show("Đang có sản phẩm trong hóa đơn bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                      
+                        using (SqlCommand cmdxoahet = new SqlCommand("xoadondathangvachitiet", cnn))
+                        {
+                            cmdxoahet.CommandType = CommandType.StoredProcedure;
+                            cmdxoahet.Parameters.AddWithValue("@sSohoadon", mahd);
+                            try
+                            {
+                                cmdxoahet.ExecuteNonQuery();
+                                cmd.ExecuteNonQuery();
+                                MessageBox.Show("Xóa Thành Công", "Thông báo", MessageBoxButtons.OK);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Lỗi", "Thông báo", MessageBoxButtons.OK);
+                            }
+                          
+                        }
+                    }
+                    else
+                    {
+                      
+                        
+                    }    
+                        kt = false; 
+                }
+                finally { 
+                    cnn.Close();
+                }
             }
             return kt;
         }
@@ -363,9 +396,9 @@ namespace Baitaplonhsk
                 btnThem.Enabled = false;
                 btnXoa.Enabled = false;
                 btnTimkiem.Enabled = false;
-                btnsuachitiet.Enabled = true;
+                btnSuachitiet.Enabled = true;
                 btnxoachitiet.Enabled = true;
-                btnsuachitiet.Visible = true;
+                btnSuachitiet.Visible = true;
                 btnxoachitiet.Visible = true;
                 txtSoHD.ReadOnly = true;
                 cbbKhachhang.Enabled = true;
@@ -442,7 +475,7 @@ namespace Baitaplonhsk
                 bool kiemtrasohoadon = kiemtratrungkhoa("tblDondathang", txtSoHD.Text, "sSohoadon");
 
                 if (kiemtrasohoadon)
-                    MessageBox.Show("Số hóa đơn đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("OK", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
                 {
                     bool kiemtramanv = false;
@@ -560,9 +593,9 @@ namespace Baitaplonhsk
             btnSua.Text = "Sửa";
             btnXoa.Text = "Xóa";
             txtSoHD.Text = "";
-            btnsuachitiet.Enabled = false;
+            btnSuachitiet.Enabled = false;
             btnxoachitiet.Enabled = false;
-            btnsuachitiet.Visible = false;
+            btnSuachitiet.Visible = false;
             btnxoachitiet.Visible = false;
             btnThem.Text = "Thêm";
             dtpNgaydathang.CustomFormat = "'Ngày: 'dd', Tháng: 'MM', Năm: 'yyyy";
@@ -593,39 +626,58 @@ namespace Baitaplonhsk
 
         private void btnthemlv_Click(object sender, EventArgs e)
         {
-            if (checkmarem) {
-                Boolean nhapmoi = true;
-                foreach (DataRow row1 in Dscthd.Rows)
-                {
-
-                    if (cbbmarem.Text == row1["sMaloairem"].ToString())
-                    {
-                        if (txtdongia.Text == row1["fGiaban"].ToString())
-                        {
-                            row1["fSoluongmua"] = float.Parse(txtsoluong.Text) + float.Parse(row1["fSoluongmua"].ToString());
-                            nhapmoi = false;
-                            errorDondathang.SetError(txtdongia, "");
-                        }
-                        else
-                        {
-                            errorDondathang.SetError(txtdongia, "Sai đơn giá!");
-                            nhapmoi = false;
-                        }
-                    }
-                }
-                if (nhapmoi)
-                {
-                    errorDondathang.SetError(txtdongia, "");
-                    DataRow row = Dscthd.NewRow();
-                    row["sMaloairem"] = cbbmarem.Text;
-                    row["fGiaban"] = txtdongia.Text;
-                    row["fSoluongmua"] = txtsoluong.Text;
-                    Dscthd.Rows.Add(row);
-                    dgvctdat.DataSource = Dscthd;
-                }
-                txtsoluong.Text = "";
-                txtdongia.Text = "";
+            String sohd = txtSoHD.Text;
+            String cbbremm = cbbmarem.Text;
+            String soluong = txtsoluong.Text;
+            String donggia = txtdongia.Text;
+            if (sohd == "" || cbbremm == "" || soluong == "" || donggia == "")
+            {
+                MessageBox.Show("Hãy nhập đầy đủ các trường thông tin");
+                return;
             }
+            else
+            {
+                using (SqlCommand cmd = new SqlCommand("themchitietdathang", cnn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@sohd", txtSoHD.Text);
+                    cmd.Parameters.AddWithValue("@loairem", cbbmarem.Text);
+                    cmd.Parameters.AddWithValue("@soluong", float.Parse(txtsoluong.Text));
+                    cmd.Parameters.AddWithValue("@giaban", float.Parse(txtdongia.Text));
+                    try
+                    {
+                        cnn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("OK");
+                    }
+                    finally { cnn.Close(); }
+                }
+                xemchitiethoadon(txtSoHD.Text);
+            }
+           
+     
+
+            //using (SqlCommand cmd = new SqlCommand("themchitietdathang", cnn))
+            //{
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    cmd.Parameters.AddWithValue("@sohd", txtSoHD.Text);
+            //    cmd.Parameters.AddWithValue("@loairem", cbbmarem.Text);
+            //    cmd.Parameters.AddWithValue("@soluong", float.Parse(txtsoluong.Text));
+            //    cmd.Parameters.AddWithValue("@giaban", float.Parse(txtdongia.Text));
+            //    try
+            //    {
+            //        cnn.Open();
+            //        cmd.ExecuteNonQuery();
+            //    }
+            //    catch
+            //    {
+            //        MessageBox.Show("OK");
+            //    }
+            //    finally { cnn.Close(); }
+            //}
         }
         private void cbbmarem_Leave(object sender, EventArgs e)
         {
@@ -664,7 +716,7 @@ namespace Baitaplonhsk
                 txtsoluong.Text = dgvctdat.Rows[i].Cells[1].Value.ToString();
                 if (btnSua.Text == "Lưu")
                 {
-                    btnsuachitiet.Enabled = true;
+                    btnSuachitiet.Enabled = true;
                     btnxoachitiet.Enabled = true;
                     txtsoluong.ReadOnly = false;
                     txtdongia.ReadOnly = false;
@@ -676,62 +728,57 @@ namespace Baitaplonhsk
 
         private void btnsuachitiet_Click(object sender, EventArgs e)
         {
-            using (SqlCommand cmd = new SqlCommand("sp_Suachitietdondathang",cnn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@sohd", txtSoHD.Text);
-                cmd.Parameters.AddWithValue("@loairem", cbbmarem.Text);
-                cmd.Parameters.AddWithValue("@soluong",float.Parse( txtsoluong.Text));
-                cmd.Parameters.AddWithValue("@giaban", float.Parse(txtdongia.Text));
-                try
-                {
-                    cnn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-                catch
-                {
-                    MessageBox.Show("Đã có lỗi xảy ra!");
-                }
-                finally { cnn.Close(); }
-            }
-            xemchitiethoadon(txtSoHD.Text);
+            //using (SqlCommand cmd = new SqlCommand("sp_Suachitietdondathang",cnn))
+            //{
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    cmd.Parameters.AddWithValue("@sohd", txtSoHD.Text);
+            //    cmd.Parameters.AddWithValue("@loairem", cbbmarem.Text);
+            //    cmd.Parameters.AddWithValue("@soluong",float.Parse( txtsoluong.Text));
+            //    cmd.Parameters.AddWithValue("@giaban", float.Parse(txtdongia.Text));
+            //    try
+            //    {
+            //        cnn.Open();
+            //        cmd.ExecuteNonQuery();
+            //    }
+            //    catch
+            //    {
+            //        MessageBox.Show("Đã có lỗi xảy ra!");
+            //    }
+            //    finally { cnn.Close(); }
+            //}
+            //xemchitiethoadon(txtSoHD.Text);
         }
 
         private void btnxoachitiet_Click(object sender, EventArgs e)
         {
-            if (dgvctdat.Rows.Count > 2) {
-                DialogResult result = MessageBox.Show("Bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    using (SqlCommand cmd = new SqlCommand("sp_Xoachitietdondathang",cnn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@sohd", txtSoHD.Text);
-                        cmd.Parameters.AddWithValue("@loairem", cbbmarem.Text);
-                        
-                        try
-                        {
-                            cnn.Open();
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Đã có lỗi xảy ra!");
-                        }
-                        finally { cnn.Close(); }
-                    }
-                    xemchitiethoadon(txtSoHD.Text);
-                }
+            //Xóa chi tiết
+            String sohd = txtSoHD.Text;
+            String cbbremm = cbbmarem.Text;
+            String soluong = txtsoluong.Text;
+            String donggia = txtdongia.Text;
+            if (sohd == "" || cbbremm == "" || soluong == "" || donggia == "")
+            {
+                MessageBox.Show("Hãy chọn một trường dữ trong chi tiết liệu để xóa");
+                return;
             }
             else
             {
-                DialogResult result = MessageBox.Show("Xóa bản ghi cuối cùng hóa đơn sẽ bị xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+                using (SqlCommand cmd = new SqlCommand("xochitietdathang", cnn))
                 {
-                    xoahoadon(txtSoHD.Text);
-                    btnBoqua_Click(sender, e);
-                }               
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@sSohoadon", sohd);
+                    cmd.Parameters.AddWithValue("@masp", cbbremm);
+                
+                        cnn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Xóa thành công");
+                        cnn.Close();
+                    
+                }
+                xemchitiethoadon(txtSoHD.Text);
             }
+          ;
+
         }
 
         private void btninhoadon_Click(object sender, EventArgs e)
@@ -820,5 +867,54 @@ namespace Baitaplonhsk
         {
             goHome(username);
         }
-    }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            btnthemlv.Visible = true;
+            cbbmarem.Enabled = true;
+            txtsoluong.ReadOnly = false;
+            txtdongia.ReadOnly = false;
+
+            cbbmarem.Enabled = true;
+            txtsoluong.Enabled = true;
+            txtdongia.Enabled = true;
+
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(str))
+            {
+                SqlCommand command = new SqlCommand("suachitietdondathang", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@sohd", txtSoHD.Text);
+                command.Parameters.AddWithValue("@loairem", cbbmarem.Text);
+                command.Parameters.AddWithValue("@soluong", float.Parse(txtsoluong.Text));
+                command.Parameters.AddWithValue("@giaban", float.Parse(txtdongia.Text));
+                command.Connection.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Sửa thành công","Thông báo" ,MessageBoxButtons.OK);
+
+                }
+                catch
+                {
+                    MessageBox.Show("Sửa Thất bại", "Thông báo", MessageBoxButtons.OK);
+                }
+                finally
+                {
+                    xemchitiethoadon(txtSoHD.Text);
+                }
+                
+                command.Connection.Close();
+            }
+         
+                
+                
+                
+           }
+     
+     }
 }

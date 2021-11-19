@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using Baitaplonhsk.DTO;
 
 namespace Baitaplonhsk
 {
@@ -31,7 +32,7 @@ namespace Baitaplonhsk
 
         static DataTable gettable(string tenbang)
         {
-            string select = "select * from " + tenbang;
+            String select = "select * from " + tenbang;
             using (SqlDataAdapter ad = new SqlDataAdapter(select, cnn))
             {
                 using (DataTable table = new DataTable())
@@ -40,6 +41,7 @@ namespace Baitaplonhsk
                     return table;
                 }
             }
+
         }
 
         private void hien()
@@ -53,6 +55,9 @@ namespace Baitaplonhsk
                 cbbTenncc.ValueMember = "sMaNcc";
             }
             string select = "select sMaloairem, sTenloairem, sTenNcc, fSoluong, fDongia from tblLoairem, tblNhacungcap where tblLoairem.sMaNcc = tblNhacungcap.sMaNcc";
+            //DataProvider provider = new DataProvider();
+            //DataTable data = provider.ExecuteQuery(select);
+            // dgrLoairem.DataSource = data;
             using (SqlCommand cmd = new SqlCommand(select, cnn))
             {
                 cnn.Open();
@@ -157,16 +162,23 @@ namespace Baitaplonhsk
         static bool kiemtratrungkhoa(string tenbang, string khoa, string tencot)
         {
             bool kq;
-            string select = "select " + tencot + " from " + tenbang + " where " + tencot + "= '" + khoa + "'";
-                using (SqlDataAdapter ad = new SqlDataAdapter(select, cnn))
-                {
-                    DataTable table = new DataTable();
-                    ad.Fill(table);
-                    if (table.Rows.Count > 0)
-                        kq = true;
-                    else
-                        kq = false;
-                }
+            string query = "select " + tencot + " from " + tenbang + " where " + tencot + "= '" + khoa + "'";
+            DataProvider provider = new DataProvider();
+            DataTable data = provider.ExecuteQuery(query);
+            if (data.Rows.Count > 0)
+                kq = true;
+            else
+                kq = false;
+
+            //using (SqlDataAdapter ad = new SqlDataAdapter(select, cnn))
+            //{
+            //    DataTable table = new DataTable();
+            //    ad.Fill(table);
+            //    if (table.Rows.Count > 0)
+            //        kq = true;
+            //    else
+            //        kq = false;
+            //}
             return kq;
         }
 
@@ -201,12 +213,12 @@ namespace Baitaplonhsk
 
             if (txtMaloairem.Text == "")
 
-                MessageBox.Show("Bạn phải nhập mã loại rèm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Bạn phải nhập mã ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
 
                 if (txtTenloairem.Text == "")
-                    MessageBox.Show("Bạn phải nhập Tên loại rèm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Bạn phải nhập Tên ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
                 {
                     if (txtSoluong.Text == "")
@@ -352,7 +364,11 @@ namespace Baitaplonhsk
                         MessageBox.Show("Xóa thành công");
                     }
                 }
-                else MessageBox.Show("Mã loại rèm này không tồn tại!");
+                else
+                {
+
+                    MessageBox.Show("Sản phẩm này đang ở trong 1 đơn hàng");
+                } 
                 cnn.Close();
             }
             btnBoqua_Click(sender, e);

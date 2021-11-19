@@ -241,7 +241,17 @@ namespace Baitaplonhsk
                 bool trungkhoa = kiemtratrungkhoa("tblNhacungcap", txtMaNCC.Text, "sMaNcc");
                 if (trungkhoa)
                 {
-                    int i = cmd.ExecuteNonQuery();
+                    try
+                    {
+                        int i = cmd.ExecuteNonQuery();
+                        MessageBox.Show("Xóa thành công");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Nhà cung cấp này đang trong 1 đơn nhập hàng");
+                    }
+                    
+                   
                 }
                 else MessageBox.Show("Mã nhà cung cấp này không tồn tại!");
                 cnn.Close();
